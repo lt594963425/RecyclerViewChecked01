@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.qihu.recyclerviewchoice.R;
 import com.qihu.recyclerviewchoice.bean.Person;
+import com.qihu.recyclerviewchoice.view.ChoiceItemLayout;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class BgMultipleChoiceRecyAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         MyHolder holder = (MyHolder) viewHolder;
         Person person = list.get(position);
+        ((ChoiceItemLayout)(holder.itemView)).setChecked(person.isChecked());//BgMultipleChoiceActivity
 
         holder.tv1.setText("姓名：" + person.getName());
         holder.tv2.setText("年龄：" + person.getAge());

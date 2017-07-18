@@ -57,12 +57,15 @@ public class BgMultipleChoiceActivity extends AppCompatActivity {
                 BgMultipleChoiceRecyAdapter.MyHolder holder = (BgMultipleChoiceRecyAdapter.MyHolder) recyclerView.getChildViewHolder(view);
                 ChoiceItemLayout itemView = (ChoiceItemLayout) holder.itemView;
                 itemView.toggle();
+                list.get(position).setChecked(list.get(position).isChecked());
 
                 if (!posiList.contains(position ) && itemView.isChecked()) {
                     posiList.add(position);
                 } else if (posiList.contains(position) || !itemView.isChecked()) {
                     posiList.remove(posiList.indexOf(position ));
                 }
+
+//                adapter.notifyDataSetChanged();
             }
         });
 

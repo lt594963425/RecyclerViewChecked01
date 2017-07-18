@@ -55,7 +55,7 @@ public class MultipleChoiceActivity extends AppCompatActivity {
 
                 MulipleRecyAdapter.MyHolder holder = (MulipleRecyAdapter.MyHolder) recyclerView.getChildViewHolder(view);
                 holder.checkBox.toggle();
-//                list.get(position).setChecked(holder.checkBox.isChecked());//不需要
+                list.get(position).setChecked(holder.checkBox.isChecked());//还是依靠标志位实现的
 
                 if (!posiList.contains(position) && holder.checkBox.isChecked()) {
                     posiList.add(position);

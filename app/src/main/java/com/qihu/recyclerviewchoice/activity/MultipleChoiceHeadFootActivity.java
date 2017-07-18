@@ -56,12 +56,8 @@ public class MultipleChoiceHeadFootActivity extends AppCompatActivity {
 
                 MultipleChoiceHeadFootAdapter.MyHolder holder = (MultipleChoiceHeadFootAdapter.MyHolder) recyclerView.getChildViewHolder(view);
                 holder.checkBox.toggle();
+                list.get(position-1).setChecked(holder.checkBox.isChecked());
 
-                if (!posiList.contains(position - adapter.getHeadViewCount()) && holder.checkBox.isChecked()) {
-                    posiList.add(position - adapter.getHeadViewCount());
-                } else if (posiList.contains(position - adapter.getHeadViewCount()) || !holder.checkBox.isChecked()) {
-                    posiList.remove(posiList.indexOf(position - adapter.getHeadViewCount()));
-                }
             }
         });
 
@@ -75,8 +71,10 @@ public class MultipleChoiceHeadFootActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 StringBuffer sb = new StringBuffer();
-                for (int i = 0; i < posiList.size(); i++) {
-                    sb.append(posiList.get(i) + ",");
+                for (int i = 0; i < list.size(); i++) {
+                    if (list.get(i).isChecked()) {
+                        sb.append(list.get(i).getName() + ",");
+                    }
                 }
                 Log.d(TAG, "sb=" + sb.toString());
                 Toast.makeText(MultipleChoiceHeadFootActivity.this, sb.toString(), Toast.LENGTH_SHORT).show();
@@ -85,8 +83,8 @@ public class MultipleChoiceHeadFootActivity extends AppCompatActivity {
     }
 
     //方法一：错误，holder=null
-//                MultipleChoiceHeadFootAdapter.MyHolder holder = (MultipleChoiceHeadFootAdapter.MyHolder) view.getTag();
+    //                MultipleChoiceHeadFootAdapter.MyHolder holder = (MultipleChoiceHeadFootAdapter.MyHolder) view.getTag();
     //方法二：checkBox= null
-//               View view2 = recyclerView.getChildAt(position - layoutManager.findFirstVisibleItemPosition());
-//                MultipleChoiceHeadFootAdapter.MyHolder holder = (MultipleChoiceHeadFootAdapter.MyHolder) recyclerView.getChildViewHolder(view2);
+    //               View view2 = recyclerView.getChildAt(position - layoutManager.findFirstVisibleItemPosition());
+    //                MultipleChoiceHeadFootAdapter.MyHolder holder = (MultipleChoiceHeadFootAdapter.MyHolder) recyclerView.getChildViewHolder(view2);
 }
