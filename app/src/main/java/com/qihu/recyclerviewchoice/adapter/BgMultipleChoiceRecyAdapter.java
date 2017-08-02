@@ -27,7 +27,7 @@ public class BgMultipleChoiceRecyAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bg_choice, parent, false);
+        View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.item_bg_choice, parent, false);
         return new MyHolder(view);
     }
 
@@ -35,7 +35,8 @@ public class BgMultipleChoiceRecyAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         MyHolder holder = (MyHolder) viewHolder;
         Person person = list.get(position);
-        ((ChoiceItemLayout)(holder.itemView)).setChecked(person.isChecked());//BgMultipleChoiceActivity
+        ChoiceItemLayout layout = (ChoiceItemLayout) holder.itemView;
+        layout.setChecked(person.isChecked());
 
         holder.tv1.setText("姓名：" + person.getName());
         holder.tv2.setText("年龄：" + person.getAge());

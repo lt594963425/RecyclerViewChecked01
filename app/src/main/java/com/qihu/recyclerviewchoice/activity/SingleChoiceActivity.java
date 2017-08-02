@@ -53,15 +53,10 @@ public class SingleChoiceActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new SingleChoiceRecyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.d(TAG, "position=" + position);
-
                 for (int i = 0; i < list.size(); i++) {
-                    if (i == position ) {
-                        list.get(i).setChecked(true);
-                    } else {
                         list.get(i).setChecked(false);
-                    }
                 }
+                list.get(position).setChecked(true);
                 checkedPosition = position;
                 adapter.notifyDataSetChanged();
             }
@@ -73,7 +68,7 @@ public class SingleChoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "单选的position=" + checkedPosition);
-                Toast.makeText(SingleChoiceActivity.this, ""+checkedPosition, Toast.LENGTH_SHORT).show();
+                Toast.makeText(SingleChoiceActivity.this, "" + checkedPosition, Toast.LENGTH_SHORT).show();
             }
         });
     }

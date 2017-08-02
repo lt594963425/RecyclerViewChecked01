@@ -26,7 +26,6 @@ public class SingleChoiceHeadFootActivity extends AppCompatActivity {
     private List<Person> list = new ArrayList<>();
     private LinearLayoutManager layoutManager;
     private Button btn;
-    private List<Integer> posiList = new ArrayList<>();
     private SingleChoiceHeadFootAdapter adapter;
     private int checkedPosition;
 

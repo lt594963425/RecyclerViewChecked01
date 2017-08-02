@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn6:
                 startActivity(new Intent(MainActivity.this, MultipleChoiceHeadFootActivity.class));
                 break;
+            case R.id.btn7:
+//                startActivity(new Intent(MainActivity.this, MultipleChoiceActivity.class));
+                break;
         }
     }
 }

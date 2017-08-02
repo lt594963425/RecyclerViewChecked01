@@ -26,7 +26,6 @@ public class BgMultipleChoiceActivity extends AppCompatActivity {
     private List<Person> list = new ArrayList<>();
     private LinearLayoutManager layoutManager;
     private Button btn;
-    private List<Integer> posiList = new ArrayList<>();
     private BgMultipleChoiceRecyAdapter adapter;
 
     @Override
@@ -56,16 +55,11 @@ public class BgMultipleChoiceActivity extends AppCompatActivity {
 
                 BgMultipleChoiceRecyAdapter.MyHolder holder = (BgMultipleChoiceRecyAdapter.MyHolder) recyclerView.getChildViewHolder(view);
                 ChoiceItemLayout itemView = (ChoiceItemLayout) holder.itemView;
-                itemView.toggle();
-                list.get(position).setChecked(list.get(position).isChecked());
+                //先改数据，再改变背景色
+                Person person = list.get(position);
+                person.setChecked(!person.isChecked());
 
-                if (!posiList.contains(position ) && itemView.isChecked()) {
-                    posiList.add(position);
-                } else if (posiList.contains(position) || !itemView.isChecked()) {
-                    posiList.remove(posiList.indexOf(position ));
-                }
-
-//                adapter.notifyDataSetChanged();
+                itemView.setChecked(person.isChecked());
             }
         });
 
@@ -74,8 +68,11 @@ public class BgMultipleChoiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 StringBuffer sb = new StringBuffer();
-                for (int i = 0; i < posiList.size(); i++) {
-                    sb.append(posiList.get(i) + ",");
+                for (int i = 0; i < list.size(); i++) {
+                    Person person = list.get(i);
+                    if (person.isChecked()) {
+                        sb.append(person.getName() + ",");
+                    }
                 }
                 Log.d(TAG, "sb=" + sb.toString());
                 Toast.makeText(BgMultipleChoiceActivity.this, sb.toString(), Toast.LENGTH_SHORT).show();

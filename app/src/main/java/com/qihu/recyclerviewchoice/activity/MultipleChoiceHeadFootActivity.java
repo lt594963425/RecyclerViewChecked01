@@ -27,7 +27,6 @@ public class MultipleChoiceHeadFootActivity extends AppCompatActivity {
     private MultipleChoiceHeadFootAdapter adapter;
     private LinearLayoutManager layoutManager;
     private Button btn;
-    private List<Integer> posiList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +52,9 @@ public class MultipleChoiceHeadFootActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
                 Log.d(TAG, "position=" + position);
-
                 MultipleChoiceHeadFootAdapter.MyHolder holder = (MultipleChoiceHeadFootAdapter.MyHolder) recyclerView.getChildViewHolder(view);
                 holder.checkBox.toggle();
                 list.get(position-1).setChecked(holder.checkBox.isChecked());
-
             }
         });
 
